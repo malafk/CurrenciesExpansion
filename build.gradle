@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+}
+
+group = 'lol.maltest.currencies'
+version = '1.0-SNAPSHOT'
+
+targetCompatibility = '17'
+compileJava.options.encoding = "UTF-8"
+
+
+repositories {
+    mavenCentral()
+
+    // Minestom repos
+    maven { url 'https://repo.spongepowered.org/maven' }
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'com.github.Minestom:Minestom:-SNAPSHOT'
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        // WARNING: change the 'Main-Class' value
+        attributes 'Main-Class': 'lol.maltest.currencies.CurrenciesExpansion',
+                "Multi-Release": true
+    }
+}
